@@ -57,3 +57,26 @@
   Kế đến, chúng tôi có thể lấp đầy sai lầm đó bằng cách thêm trị tuyệt đối vào biểu thức, hàm dự đoán trở thành <img src="https://latex.codecogs.com/svg.image?e&space;=&space;\left|y&space;-\hat{y}&space;\right|" title="https://latex.codecogs.com/svg.image?e = \left|y -\hat{y} \right|" />, hàm này tuy phản ánh được chính xác sai số, nhưng lại khó khăn trong việc tính đạo hàm (đạo hàm không liên tục trên toàn bộ tập xác định).
   
   Cuối cùng, chúng tôi tính <img src="https://latex.codecogs.com/svg.image?e^2&space;=&space;\frac{1}{2}*&space;(y&space;-&space;\hat{y})" title="https://latex.codecogs.com/svg.image?e^2 = \frac{1}{2}* (y - \hat{y})" />, trong đó, hệ số <img src="https://latex.codecogs.com/svg.image?\frac{1}{2}" title="https://latex.codecogs.com/svg.image?\frac{1}{2}" /> để thuận tiện trong quá trình tính toán (sẽ bị triệt tiêu khi tính đạo hàm)
+  
+ ### **Hàm mất mát**
+ Điều tương tự xảy ra với các cặp (input,outcome), điều chúng ta muốn là tổng sai số của các cặp là nhỏ nhất, điều này tương đương với việc tìm **w** để hàm số sau đây đạt giá trị nhỏ nhất.
+ 
+<img src="https://latex.codecogs.com/svg.image?\pounds(w)&space;=&space;\frac{1}{2}\sum_{i=1}^{N}&space;(y_{i}-\overline{x_{i}}w)^2" title="https://latex.codecogs.com/svg.image?\pounds(w) = \frac{1}{2}\sum_{i=1}^{N} (y_{i}-\overline{x_{i}}w)^2" />
+
+Giá trị **w** làm cho hàm mất mát đạt giá trị nhỏ nhất được gọi là điểm tối ưu, kí hiệu :
+
+<img src="https://latex.codecogs.com/svg.image?w^*&space;=&space;arg\displaystyle&space;\min_{&space;w}\pounds&space;(w)" title="https://latex.codecogs.com/svg.image?w^* = arg\displaystyle \min_{ w}\pounds (w)" />
+
+### **Nghiệm của bài toán**
+
+Để tìm nghiệm cho bài toán tối ưu, chúng ta tiến hành giải phương trình đạo hàm bằng 0. Đạo hàm theo **w** của hàm mất mát là:
+
+<img src="https://latex.codecogs.com/svg.image?\frac{\partial\pounds&space;(w)&space;}{\partial&space;w}&space;=&space;\bar{X}^T(\bar{X}w&space;-&space;y)" title="https://latex.codecogs.com/svg.image?\frac{\partial\pounds (w) }{\partial w} = \bar{X}^T(\bar{X}w - y)" />
+
+Phương trình đạo hàm bằng 0 tương đương với:
+
+<img src="https://latex.codecogs.com/svg.image?\bar{X}^T\bar{X}w&space;=&space;\bar{X}^Ty&space;=&space;b" title="https://latex.codecogs.com/svg.image?\bar{X}^T\bar{X}w = \bar{X}^Ty = b" />
+
+- Nếu ma trận <img src="https://latex.codecogs.com/svg.image?A&space;=&space;\bar{X}^T\bar{X}" title="https://latex.codecogs.com/svg.image?A = \bar{X}^T\bar{X}" /> khả nghịch (định thức khác 0), thì phương trình có nghiệm duy nhất <img src="https://latex.codecogs.com/svg.image?w&space;=&space;A^{-1}b" title="https://latex.codecogs.com/svg.image?w = A^{-1}b" />.
+- Ngược lại, phương trình có nghiệm <img src="https://latex.codecogs.com/svg.image?w&space;=&space;A^\dagger&space;b&space;=&space;(\bar{X}^T\bar{X})^\dagger&space;\bar{X}^T&space;y" title="https://latex.codecogs.com/svg.image?w = A^\dagger b = (\bar{X}^T\bar{X})^\dagger \bar{X}^T y" />
+ 
