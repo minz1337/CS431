@@ -170,7 +170,14 @@ Từ đồ thị trên, ta thấy mô hình hoạt động khá tốt. Tiếp th
     Chieu cao cua cay co thoi gian 5.6(nam) la: 160.50 (kg), real number: 160 (kg)
     
 Chúng ta thấy rằng, kết quả dự đoán khá gần so với thực tế.
+## **Bài tập**
+Giả sử chúng ta muốn kinh doanh bán thức ăn theo hình thức xe bán thức ăn. Câu hỏi đặt ra rằng liệu nên bán ở đâu thì cho được lợi nhuận cao. Vậy khi chúng ta biết được thành phố có mật độ dân số thì có thể dựa vào đó để tính được lợi nhuận hay không? Để kiểm chứng điều đó, nhóm thu thập được bộ dataset gồm dân số của các thành phố và lợi nhuận thu được ứng với mỗi thành phố đó.
 
+Input: X dân số (X>=0)
+
+Output: y lợi nhuận dự đoán được dựa trên dân số (y>=0)
+
+Souce code [Link here](https://github.com/minz1337/CS431/blob/main/BaiTap_Linear_Regression.ipynb)
 ## **Kết luận**
 ### **Ưu điểm của mô hình**
 Linear Regression là một mô hình đơn giản, dễ cài đặt, lời giải cho phương trình đạo hàm bằng 0 cũng khá đơn giản.
