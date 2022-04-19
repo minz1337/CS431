@@ -79,4 +79,104 @@ Phương trình đạo hàm bằng 0 tương đương với:
 
 - Nếu ma trận <img src="https://latex.codecogs.com/svg.image?A&space;=&space;\bar{X}^T\bar{X}" title="https://latex.codecogs.com/svg.image?A = \bar{X}^T\bar{X}" /> khả nghịch (định thức khác 0), thì phương trình có nghiệm duy nhất <img src="https://latex.codecogs.com/svg.image?w&space;=&space;A^{-1}b" title="https://latex.codecogs.com/svg.image?w = A^{-1}b" />.
 - Ngược lại, phương trình có nghiệm <img src="https://latex.codecogs.com/svg.image?w&space;=&space;A^\dagger&space;b&space;=&space;(\bar{X}^T\bar{X})^\dagger&space;\bar{X}^T&space;y" title="https://latex.codecogs.com/svg.image?w = A^\dagger b = (\bar{X}^T\bar{X})^\dagger \bar{X}^T y" />
- 
+## **Cài đặt chương trình**
+Giả sử chúng ta có một bảng dữ liệu thời gian sinh trưởng và chiều cao của một loài cây như sau
+   
+| STT | Thời gian sinh trưởng (năm) | chiều cao (cm) |
+| :---: | --- | --- |
+| 1 | 4.5 | 147 | 
+| 2 | 5.0 | 150 |
+| 3 | 5.1|	153 |
+| 4 | 5.2 | 155 |
+| 5 | 5.4 | 158 |
+| 6 | 5.6 | 160 |
+| 7 | 5.8 | 163 |
+| 8 | 5.9 | 165 |
+| 9 | 6.0 | 168 |
+| 10 | 7.2 | 170 |
+| 11| 6.3 | 173 |
+|12 | 6.4 | 175 |
+| 13 | 6.7 | 178 |
+| 14| 6.8 | 180 |
+| 15| 6.9 | 183 |
+
+Bài toán đặt ra là: liệu có thể dự đoán chiều cao của cây dựa vào thời gian trồng hay không ?
+-> Chúng ta có thể thấy thời gian trồng cây tỉ lệ thuận với chiều cao của cây (sẽ không đúng trong thực tế) nên có thể sử dụng Linear Regression để dự đoán cho bài toán này.
+Chúng ta sẽ giữ lại cột 5.2 và 5.6 cho việc kiểm tra tính đúng đắn của mô hình.
+
+### **Trực quan hóa dữ liệu**
+Trước tiên, chúng ta cần 2 thư viện **numpy** cho đại số và **matplotlib** cho việc vẽ hình:
+
+    import numpy as np 
+    import matplotlib.pyplot as plt
+    
+Tiếp theo, chúng ta sẽ trực quan hóa dữ liệu trên đồ thị
+
+    # height (cm)
+    y = np.array([[147, 150, 153, 158, 163, 165, 168, 170, 173, 175, 178, 180, 183]]).T
+    # Time (year)
+    X = np.array([[ 4.9, 5.0, 5.1,  5.4, 5.8, 5.9, 6.0, 6.2, 6.3, 6.4, 6.6, 6.7, 6.8]]).T
+    # Visualize data 
+    plt.plot(X, y, 'ro')
+    plt.axis([4, 7.5, 140, 190])
+    plt.xlabel('Height (cm)')
+    plt.ylabel('Time(year)')
+    plt.show()
+    
+![alt text](https://github.com//minz1337/CS431//source//1.png)
+
+Từ đồ thị này, ta có thể thấy dữ liệu được sắp xếp gần như một đường thẳng, vậy mô hình LR có khả năng sẽ cho kết quả tốt.
+Chiều_cao = w_0* thời_gian + w_1
+### **Nghiệm theo công thức**
+
+    # Building Xbar 
+    one = np.ones((X.shape[0], 1))
+    Xbar = np.concatenate((one, X), axis = 1)
+
+    # Calculating weights of the fitting line 
+    A = np.dot(Xbar.T, Xbar)
+    b = np.dot(Xbar.T, y)
+    w = np.dot(np.linalg.pinv(A), b)
+    print('w = ', w)
+    # Preparing the fitting line 
+    w_0 = w[0][0]
+    w_1 = w[1][0]
+    x0 = np.linspace(4, 8, 2)
+    y0 = w_0 + w_1*x0
+
+    # Drawing the fitting line 
+    plt.plot(X.T, y.T, 'ro')     # data 
+    plt.plot(x0, y0)               # the fitting line
+    plt.axis([4, 7.5, 140, 190])
+    plt.xlabel('Height (cm)')
+    plt.ylabel('Time(year)')
+    plt.show()
+    
+    w =  [[60.91228332]
+    [17.7839211 ]]
+![alt text](https://github.com//minz1337/CS431//source//2.png)
+
+Từ đồ thị trên, ta thấy mô hình hoạt động khá tốt. Tiếp theo chúng ta sẽ thử với 2 giá trị test.
+    
+    
+    y1 = w_1*5.2 + w_0
+    y2 = w_1*5.6 + w_0
+
+    print( u'Chieu cao cua cay co thoi gian 5.2(nam) la: %.2f (kg), real number: 155 (kg)'  %(y1) )
+    print( u'Chieu cao cua cay co thoi gian 5.6(nam) la: %.2f (kg), real number: 160 (kg)'  %(y2) )
+    
+    
+    Chieu cao cua cay co thoi gian 5.2(nam) la: 153.39 (kg), real number: 155 (kg)
+    Chieu cao cua cay co thoi gian 5.6(nam) la: 160.50 (kg), real number: 160 (kg)
+    
+Chúng ta thấy rằng, kết quả dự đoán khá gần so với thực tế.
+
+## **Kết luận**
+### **Ưu điểm của mô hình**
+Linear Regression là một mô hình đơn giản, dễ cài đặt, lời giải cho phương trình đạo hàm bằng 0 cũng khá đơn giản.
+### **Nhược điểm của mô hình**
+- Linear Regression rất nhạy cảm với nhiễu (sensitive to noise). Vì vậy, trước khi thực hiện Linear Regression, các nhiễu (outlier) cần phải được loại bỏ. Bước này được gọi là tiền xử lý (pre-processing).
+- nó không biễu diễn được các mô hình phức tạp. Mặc dù trong phần trên, chúng ta thấy rằng phương pháp này có thể được áp dụng nếu quan hệ giữa outcome và input không nhất thiết phải là tuyến tính, nhưng mối quan hệ này vẫn đơn giản nhiều so với các mô hình thực tế.
+- Khi dữ liệu lớn công thức hiện tại có độ phức tạp lớn  để tính ma trận nghịch đảo.
+    
+    
