@@ -123,7 +123,7 @@ Tiếp theo, chúng ta sẽ trực quan hóa dữ liệu trên đồ thị
     plt.ylabel('Time(year)')
     plt.show()
     
-![alt text](https://github.com//minz1337/CS431//source//1.png)
+![alt text](https://github.com/minz1337/CS431/blob/main/source/1.png)
 
 Từ đồ thị này, ta có thể thấy dữ liệu được sắp xếp gần như một đường thẳng, vậy mô hình LR có khả năng sẽ cho kết quả tốt.
 Chiều_cao = w_0* thời_gian + w_1
@@ -154,7 +154,7 @@ Chiều_cao = w_0* thời_gian + w_1
     
     w =  [[60.91228332]
     [17.7839211 ]]
-![alt text](https://github.com//minz1337/CS431//source//2.png)
+![alt text](https://github.com/minz1337/CS431/blob/main/source/2.png)
 
 Từ đồ thị trên, ta thấy mô hình hoạt động khá tốt. Tiếp theo chúng ta sẽ thử với 2 giá trị test.
     
