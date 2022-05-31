@@ -20,7 +20,7 @@
 
 | STT | Họ tên | MSSV |
 | :---: | --- | --- |
-| 1 | Nguyễn Xuân Minh | 19522054 | 
+| 1 | Nguyễn Xuân Minh | 19521848 | 
 | 2 | Hà Văn Thanh | 19522224 |
 | 3 | Nguyễn Đức Thắng | 19522206 |
 
