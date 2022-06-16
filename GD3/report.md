@@ -30,12 +30,15 @@
 
   Để có thể hiểu rõ về RNN, trước tiên chúng ta cùng nhìn lại mô hình Neural Network dưới đây:
   
+  ![alt text](https://github.com/minz1337/CS431/blob/main/GD3/image/1.jpg)
   
   Như đã biết thì Neural Network bao gồm 3 phần chính là Input layer, Hidden layer và Output layer, ta có thể thấy là đầu vào và đầu ra của mạng neuron này là độc lập với nhau. Như vậy mô hình này không phù hợp với những bài toán dạng chuỗi như mô tả, hoàn thành câu, ... vì những dự đoán tiếp theo như từ tiếp theo phụ thuộc vào vị trí của nó trong câu và những từ đằng trước nó. 
   
   Chính vì vậy, RNN ra đời với ý tưởng chính là sử dụng một bộ nhớ để lưu lại thông tin từ từ những bước tính toán xử lý trước để dựa vào nó có thể đưa ra dự đoán chính xác nhất cho bước dự đoán hiện tại.
   
 ### Tổng quan mô hình RNN
+
+![alt text](https://github.com/minz1337/CS431/blob/main/GD3/image/2.jpg)
 
 Nếu như mạng Neural Network chỉ là input layer <img src="https://latex.codecogs.com/svg.image?x" title="https://latex.codecogs.com/svg.image?x" /> đi qua hidden layer <img src="https://latex.codecogs.com/svg.image?h" title="https://latex.codecogs.com/svg.image?h" /> và cho ra output layer <img src="https://latex.codecogs.com/svg.image?y" title="https://latex.codecogs.com/svg.image?y" /> với full connected giữa các layer thì trong RNN, các input <img src="https://latex.codecogs.com/svg.image?x_{t}" title="https://latex.codecogs.com/svg.image?x_{t}" /> sẽ được kết hợp với hidden layer <img src="https://latex.codecogs.com/svg.image?h_{t-1}" title="https://latex.codecogs.com/svg.image?h_{t-1}" />  bằng hàm  <img src="https://latex.codecogs.com/svg.image?f_{w}" title="https://latex.codecogs.com/svg.image?f_{w}" /> để tính toán ra hidden layer <img src="https://latex.codecogs.com/svg.image?h_{t}" title="https://latex.codecogs.com/svg.image?h_{t}" /> hiện tại và output <img src="https://latex.codecogs.com/svg.image?y_{t}" title="https://latex.codecogs.com/svg.image?y_{t}" /> sẽ được tính ta từ <img src="https://latex.codecogs.com/svg.image?h_{t}" title="https://latex.codecogs.com/svg.image?h_{t}" />, **W** là tập các trọng số và nó được ở tất cả các cụm, các <img src="https://latex.codecogs.com/svg.image?L_{1},&space;L_{2},...&space;L_{t}" title="https://latex.codecogs.com/svg.image?L_{1}, L_{2},... L_{t}" /> là các hàm mất mát. Như vậy kết quả từ các quá trình tính toán trước đã được "nhớ" bằng cách kết hợp thêm <img src="https://latex.codecogs.com/svg.image?h_{t-1}" title="https://latex.codecogs.com/svg.image?h_{t-1}" /> để tính 
 <img src="https://latex.codecogs.com/svg.image?h_{t}" title="https://latex.codecogs.com/svg.image?h_{t}" /> để tăng độ chính xác cho những dự đoán ở hiện tại.
@@ -56,7 +59,7 @@ Thường thì <img src="https://latex.codecogs.com/svg.image?f_{w}" title="http
 ### Các dạng của mô hình RNN
   Cũng giống như các mô hình khác, RNN có nhiều dạng, biến thể khác nhau để phù hợp với từng bài toán cụ thể, dưới đây là một số dạng của mô hình RNN cơ bản:
   
-  
+  ![alt text](https://github.com/minz1337/CS431/blob/main/GD3/image/3.jpg)
   
   **One to One**: là dạng bài toán chỉ có một đầu vào (input) và một đầu ra (ouput). Đây là mẫu bài toán cho Neural Network (NN) và Convolutional Neural Network (CNN). Có thể kể đến các bài toán điển hình như bài toán phân loại hình ảnh: Input là 1 ảnh và output là 1 ảnh đã được segment.
   
